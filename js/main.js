@@ -36,12 +36,19 @@ function chosenWords(){
         }
     }
     console.log(chosenNames)
+    let ul = document.querySelector('#word-list')
+    chosenNames.forEach(name => {
+        const li = document.createElement('li')
+        li.textContent = name
+        ul.appendChild(li)
+    })
+
+
     for (let i = 0 ; i < chosenNames.length ; i++){
         chosenNames[i] = chosenNames[i].replaceAll(' ', '').replaceAll('-','').replaceAll('é', 'e').toUpperCase()
     }
     console.log(arrOfNames)
     console.log(chosenNames)
-
 
 
     const gridSize = 20
@@ -63,6 +70,7 @@ function insertWord(grid,word){
         [0 , 1],
         [1 , 0],
         [1 , 1],
+        [1 , -1]
     ]
 
     const gridSize = grid.length
@@ -200,7 +208,7 @@ function getSelectedCells(start, end){
         for (let i = 0 ; i <= steps ; i++){
             const row = startRow + Math.round(i + rowStep)
             const col = startIndex + Math.round(i + colStep)
-        cells.push(document.querySelector(`#word-search-grid tr:nth-child(${row + 1}) td:nth-child(${col + 1})`))
+            cells.push(document.querySelector(`#word-search-grid tr:nth-child(${row + 1}) td:nth-child(${col + 1})`))
         }
     }
     return cells
@@ -221,7 +229,7 @@ function markWordAsFound(word){
     }
     updateWordListDisplay()
 
-    selectedCells.forEach(cell => classList.add('found'))
+    selectedCells.forEach(cell => cell.classList.add('found'))
     
 }
 
