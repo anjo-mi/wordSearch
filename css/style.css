@@ -1,0 +1,36 @@
+*{
+    box-sizing: border-box;
+}
+
+html{
+    font-size: 62.5%;
+}
+
+body{
+    font-size: 2rem;
+}
+
+#word-search-grid {
+    border-collapse: collapse;
+}
+  
+.grid-cell {
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    border: 1px solid #ccc;
+    user-select: none;
+}
+  
+.highlighted {
+    background-color: yellow;
+}
+  
+.found {
+    background-color: lightgreen;
+}
+  
+#word-list .found {
+    text-decoration: line-through;
+    color: green;
+}
