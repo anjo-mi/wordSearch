@@ -279,7 +279,7 @@ function updateWordListDisplay(){
     chosenNames.forEach(word => {
         const li = document.createElement('li')
         li.textContent = word
-        if (word.includes('(found')){
+        if (word.includes('(found)')){
             li.classList.add('found')
         }
         wordListElement.appendChild(li)
