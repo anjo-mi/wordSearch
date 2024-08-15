@@ -230,13 +230,35 @@ function getSelectedCells(start, end){
 
 function checkSelectedWord(){
     const selectedWord = selectedCells.map(cell => cell.textContent).join('')
-    let index = chosenNames.indexOf(selectedWord)
-    if (index === -1){
-        return
+    const reversedWord = selectedWord.split('').reverse().join('')
+
+    let foundWord = ''
+    let index = -1
+
+    for (let i = 0 ; i < chosenNames.length ; i++){
+        if (chosenNames[i] === selectedWord || chosenNames[i] === reversedWord){
+            foundWord = chosenNames[i]
+            index = i
+            break;
+        }
     }
-    if (!document.getElementById('word-list').childNodes[index].classList.contains('found')){
-        markWordAsFound(selectedWord)
+
+    if (index !== -1){
+        const wordListItem = document.getElementById('word-list').children[index]
+        if (!wordListItem.classList.contains('found')){
+            markWordAsFound(foundWord)
+        }
     }
+    // let index = chosenNames.indexOf(selectedWord)
+    // if (index === -1){
+    //     index = chosenNames.indexOf(selectedWord.split('').reverse().join(''))
+    //     if (index === -1){
+    //         return
+    //     }
+    // }
+    // if (!document.getElementById('word-list').childNodes[index].classList.contains('found')){
+    //     markWordAsFound(selectedWord)
+    // }
 }
 
 function markWordAsFound(word){
