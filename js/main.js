@@ -74,6 +74,9 @@ function insertWord(grid,word){
         [1 , 0],
         [1 , 1],
         [1 , -1],
+        [-1 , 1],
+        [0 , -1],
+        [-1 , 0],
     ]
 
     const gridSize = grid.length
