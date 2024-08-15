@@ -1,5 +1,7 @@
 *{
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 html{
@@ -8,7 +10,34 @@ html{
 
 body{
     font-size: 2rem;
-    background-image: url();
+    font-family: 'Orbitron', sans-serif;
+    background-image: url('../img/deathStar.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    position: relative;
+    color: #ffffff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.title{
+    text-align: center;
+    padding: 2rem 0;
+    width: 100%;
+    background-color: rgba(0,0,0,0.4);
+}
+
+h1{
+    font-size: 4rem;
+    color: #ffe81f;
+    -webkit-text-stroke-color: blueviolet;
+    -webkit-text-stroke-width: .2rem;
+    text-shadow: .3rem .3rem black;
+    text-shadow: 0 0 10px #ffe81f, 0 0 20px #ffe81f, 0 0 30px #ffe81f;
 }
 
 #game-container{
@@ -22,6 +51,8 @@ body{
 #word-search-grid {
     width: 60%;
     border-collapse: collapse;
+    background-color: rgb(245, 245, 8, 0.7);
+    box-shadow: .5rem .5rem 1rem navy;
 }
   
 .grid-cell {
@@ -35,6 +66,12 @@ body{
 .highlighted {
     background-color: yellow;
 }
+
+#word-list-container{
+    background-color: rgb(245, 245, 8, 0.7);
+    outline: 2px solid black;
+    box-shadow: .5rem .5rem 1rem navy;
+}
   
 .found {
     background-color: lightgreen;
@@ -44,4 +81,5 @@ body{
     width: fit-content;
     text-decoration: line-through;
     color: green;
+    border-radius: .2rem .2rem;
 }
