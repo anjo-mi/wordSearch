@@ -267,7 +267,7 @@ function markWordAsFound(word){
     // if(index > -1){
     //     chosenNames[index] = `${word} (found)`
     // }
-    // updateWordListDisplay()
+    updateWordListDisplay()
 
     // selectedCells.forEach(cell => cell.classList.add('found'))
     
