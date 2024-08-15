@@ -150,12 +150,12 @@ function initializeWordSearch(){
     const gridElement = document.getElementById('word-search-grid')
 
     gridElement.addEventListener('mousedown', startSelection)
-    gridElement.addEventListener('mousemove', updateSelection)
+    document.addEventListener('mousemove', updateSelection)
     document.addEventListener('mouseup', endSelection)
 
     gridElement.addEventListener('touchstart', handleTouchStart)
     gridElement.addEventListener('touchmove', handleTouchMove)
-    document.addEventListener('touchup', handleTouchEnd)
+    gridElement.addEventListener('touchend', handleTouchEnd)
 }
 
 function startSelection(event){
@@ -195,28 +195,49 @@ function clearHighlight(){
 }
 
 function getSelectedCells(start, end){
-    const startIndex = Array.from(start.parentNode.children).indexOf(start)
-    const endIndex = Array.from(end.parentNode.children).indexOf(end)
-    const startRow = start.parentNode.rowIndex
-    const endRow = end.parentNode.rowIndex
-
     const cells = []
-    const rowDiff = endRow - startRow
-    const colDiff = endIndex - startIndex
-    const steps = Math.max(Math.abs(rowDiff), Math.abs(colDiff))
+    const startRow = start.parentNode.rowIndex
+    const startCol = start.cellIndex
+    const endRow = end.parentNode.rowIndex
+    const endCol = end.cellIndex
 
-    if (steps === 0){
-        cells.push(start)
-    }else{
-        const rowStep = rowDiff / steps
-        const colStep = colDiff / steps
+    const rowStep = Math.sign(endRow - startRow) || 0
+    const colStep = Math.sign(endCol - startCol) || 0
 
-        for (let i = 0 ; i <= steps ; i++){
-            const row = startRow + Math.round(i + rowStep)
-            const col = startIndex + Math.round(i + colStep)
-            cells.push(document.querySelector(`#word-search-grid tr:nth-child(${row + 1}) td:nth-child(${col + 1})`))
-        }
+    let currentRow = startRow
+    let currentCol = startCol
+
+    while (true){
+        const cell = document.querySelector(`#word-search-grid tr:nth-child(${currentRow + 1}) td:nth-child${currentCol + 1})`)
+        cells.push(cell)
+
+        if (currentRow === endRow && currentCol === endCol) break;
+
+        currentRow += rowStep
+        currentCol += colStep
     }
+    // const startIndex = Array.from(start.parentNode.children).indexOf(start)
+    // const endIndex = Array.from(end.parentNode.children).indexOf(end)
+    // const startRow = start.parentNode.rowIndex
+    // const endRow = end.parentNode.rowIndex
+
+    // const cells = []
+    // const rowDiff = endRow - startRow
+    // const colDiff = endIndex - startIndex
+    // const steps = Math.max(Math.abs(rowDiff), Math.abs(colDiff))
+
+    // if (steps === 0){
+    //     cells.push(start)
+    // }else{
+    //     const rowStep = rowDiff / steps
+    //     const colStep = colDiff / steps
+
+    //     for (let i = 0 ; i <= steps ; i++){
+    //         const row = startRow + Math.round(i + rowStep)
+    //         const col = startIndex + Math.round(i + colStep)
+    //         cells.push(document.querySelector(`#word-search-grid tr:nth-child(${row + 1}) td:nth-child(${col + 1})`))
+    //     }
+    // }
     return cells
 }
 
