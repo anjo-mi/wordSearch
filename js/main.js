@@ -24,31 +24,34 @@ function getChars(url){
 
 getChars(url)
 
+let unadjustedNames = []
+
 let chosenNames = []
 
 
 function chosenWords(){
-    while (chosenNames.length <= 2){
+    while (unadjustedNames.length <= 2){
         let randomIndex = Math.floor(Math.random() * arrOfNames.length)
         let possible = arrOfNames[randomIndex]
-        if (!chosenNames.includes(possible)){
-            chosenNames.push(possible)
+        if (!unadjustedNames.includes(possible)){
+            unadjustedNames.push(possible)
         }
     }
-    console.log(chosenNames)
+    console.log(unadjustedNames)
     let ul = document.querySelector('#word-list')
-    chosenNames.forEach(name => {
+    unadjustedNames.forEach(name => {
         const li = document.createElement('li')
         li.textContent = name
         ul.appendChild(li)
     })
 
 
-    for (let i = 0 ; i < chosenNames.length ; i++){
-        chosenNames[i] = chosenNames[i].replaceAll(' ', '').replaceAll('-','').replaceAll('é', 'e').toUpperCase()
+    for (let i = 0 ; i < unadjustedNames.length ; i++){
+        chosenNames[i] = unadjustedNames[i].replaceAll(' ', '').replaceAll('-','').replaceAll('é', 'e').toUpperCase()
     }
     console.log(arrOfNames)
     console.log(chosenNames)
+    console.log(unadjustedNames)
 
 
     const gridSize = 15
