@@ -8,9 +8,19 @@ html{
 
 body{
     font-size: 2rem;
+    background-image: url();
+}
+
+#game-container{
+    height: auto;
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
 }
 
 #word-search-grid {
+    width: 60%;
     border-collapse: collapse;
 }
   
@@ -31,6 +41,7 @@ body{
 }
   
 #word-list .found {
+    width: fit-content;
     text-decoration: line-through;
     color: green;
 }
