@@ -223,28 +223,7 @@ function getSelectedCells(start, end){
         currentRow += rowStep
         currentCol += colStep
     }
-    // const startIndex = Array.from(start.parentNode.children).indexOf(start)
-    // const endIndex = Array.from(end.parentNode.children).indexOf(end)
-    // const startRow = start.parentNode.rowIndex
-    // const endRow = end.parentNode.rowIndex
 
-    // const cells = []
-    // const rowDiff = endRow - startRow
-    // const colDiff = endIndex - startIndex
-    // const steps = Math.max(Math.abs(rowDiff), Math.abs(colDiff))
-
-    // if (steps === 0){
-    //     cells.push(start)
-    // }else{
-    //     const rowStep = rowDiff / steps
-    //     const colStep = colDiff / steps
-
-    //     for (let i = 0 ; i <= steps ; i++){
-    //         const row = startRow + Math.round(i + rowStep)
-    //         const col = startIndex + Math.round(i + colStep)
-    //         cells.push(document.querySelector(`#word-search-grid tr:nth-child(${row + 1}) td:nth-child(${col + 1})`))
-    //     }
-    // }
     return cells
 }
 
@@ -268,35 +247,13 @@ function markWordAsFound(word){
     }else{
         wordListItems[index].classList.add('found')
     }
-    // for (let item of wordListItems){
-    //     if (item.textContent === word){
-    //         item.classList.add('found')
-    //         break;
-    //     }
-    // }
-    selectedCells.forEach(cell => cell.classList.add('found'))
-    // const index = chosenNames.indexOf('#word-list')
-    // if(index > -1){
-    //     chosenNames[index] = `${word} (found)`
-    // }
-    // updateWordListDisplay()
 
-    // selectedCells.forEach(cell => cell.classList.add('found'))
+    selectedCells.forEach(cell => cell.classList.add('found'))
+
     
 }
 
-// function updateWordListDisplay(){
-//     const wordListElement = document.getElementById('word-list')
-//     wordListElement.innerHTML = ''
-//     chosenNames.forEach(word => {
-//         const li = document.createElement('li')
-//         li.textContent = word
-//         if (word.includes('(found)')){
-//             li.classList.add('found')
-//         }
-//         wordListElement.appendChild(li)
-//     })
-// }
+
 
 function handleTouchStart(event){
     const touch = event.touches[0]
