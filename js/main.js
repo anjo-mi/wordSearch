@@ -261,12 +261,12 @@ function checkSelectedWord(){
 }
 
 function markWordAsFound(word){
-    const wordListItems = document.querySelectorAll('#word-list li')
+    const wordListItems = Array.from(document.querySelectorAll('#word-list li'))
     let index = chosenNames.indexOf(word)
     if (index === -1){
         return
     }else{
-        wordListItems.childNodes[index].classList.add('found')
+        wordListItems[index].classList.add('found')
     }
     // for (let item of wordListItems){
     //     if (item.textContent === word){
@@ -279,24 +279,24 @@ function markWordAsFound(word){
     // if(index > -1){
     //     chosenNames[index] = `${word} (found)`
     // }
-    updateWordListDisplay()
+    // updateWordListDisplay()
 
     // selectedCells.forEach(cell => cell.classList.add('found'))
     
 }
 
-function updateWordListDisplay(){
-    const wordListElement = document.getElementById('word-list')
-    wordListElement.innerHTML = ''
-    chosenNames.forEach(word => {
-        const li = document.createElement('li')
-        li.textContent = word
-        if (word.includes('(found)')){
-            li.classList.add('found')
-        }
-        wordListElement.appendChild(li)
-    })
-}
+// function updateWordListDisplay(){
+//     const wordListElement = document.getElementById('word-list')
+//     wordListElement.innerHTML = ''
+//     chosenNames.forEach(word => {
+//         const li = document.createElement('li')
+//         li.textContent = word
+//         if (word.includes('(found)')){
+//             li.classList.add('found')
+//         }
+//         wordListElement.appendChild(li)
+//     })
+// }
 
 function handleTouchStart(event){
     const touch = event.touches[0]
