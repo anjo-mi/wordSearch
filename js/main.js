@@ -262,12 +262,18 @@ function checkSelectedWord(){
 
 function markWordAsFound(word){
     const wordListItems = document.querySelectorAll('#word-list li')
-    for (let item of wordListItems){
-        if (item.textContent === word){
-            item.classList.add('found')
-            break;
-        }
+    let index = chosenNames.indexOf(word)
+    if (index === -1){
+        return
+    }else{
+        wordListItems.childNodes[index].classList.add('found')
     }
+    // for (let item of wordListItems){
+    //     if (item.textContent === word){
+    //         item.classList.add('found')
+    //         break;
+    //     }
+    // }
     selectedCells.forEach(cell => cell.classList.add('found'))
     // const index = chosenNames.indexOf('#word-list')
     // if(index > -1){
