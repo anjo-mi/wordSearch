@@ -208,7 +208,8 @@ function getSelectedCells(start, end){
     let currentCol = startCol
 
     while (true){
-        const cell = document.querySelector(`#word-search-grid tr:nth-child(${currentRow + 1}) td:nth-child${currentCol + 1})`)
+        const cell = document.querySelector(`#word-search-grid tr:nth-child(${currentRow + 1}) td:nth-child(${currentCol + 1})`)
+        if (!cell) break;
         cells.push(cell)
 
         if (currentRow === endRow && currentCol === endCol) break;
