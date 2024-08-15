@@ -224,9 +224,9 @@ function getSelectedCells(start, end){
 function checkSelectedWord(){
     const selectedWord = selectedCells.map(cell => cell.textContent).join('')
     let index = chosenNames.indexOf(selectedWord)
-    // if (index === -1){
-    //     return
-    // }
+    if (index === -1){
+        return
+    }
     if (!document.getElementById('word-list').childNodes[index].classList.contains('found')){
         markWordAsFound(selectedWord)
     }
