@@ -249,16 +249,6 @@ function checkSelectedWord(){
             markWordAsFound(foundWord)
         }
     }
-    // let index = chosenNames.indexOf(selectedWord)
-    // if (index === -1){
-    //     index = chosenNames.indexOf(selectedWord.split('').reverse().join(''))
-    //     if (index === -1){
-    //         return
-    //     }
-    // }
-    // if (!document.getElementById('word-list').childNodes[index].classList.contains('found')){
-    //     markWordAsFound(selectedWord)
-    // }
 }
 
 function markWordAsFound(word){
@@ -271,8 +261,6 @@ function markWordAsFound(word){
     }
 
     selectedCells.forEach(cell => cell.classList.add('found'))
-
-    
 }
 
 
