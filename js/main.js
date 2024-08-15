@@ -28,7 +28,7 @@ let chosenNames = []
 
 
 function chosenWords(){
-    while (chosenNames.length <= 9){
+    while (chosenNames.length <= 2){
         let randomIndex = Math.floor(Math.random() * arrOfNames.length)
         let possible = arrOfNames[randomIndex]
         if (!chosenNames.includes(possible)){
@@ -51,7 +51,7 @@ function chosenWords(){
     console.log(chosenNames)
 
 
-    const gridSize = 20
+    const gridSize = 15
     const grid = createGrid(gridSize)
     chosenNames.forEach(word => insertWord(grid, word))
     fillGrid(grid)
@@ -70,7 +70,7 @@ function insertWord(grid,word){
         [0 , 1],
         [1 , 0],
         [1 , 1],
-        [1 , -1]
+        [1 , -1],
     ]
 
     const gridSize = grid.length
@@ -80,15 +80,18 @@ function insertWord(grid,word){
         const direction = directions[Math.floor(Math.random() * directions.length)]
         const [dx, dy] = direction
 
-        let startX = Math.floor(Math.random() * gridSize)
         let startY = Math.floor(Math.random() * gridSize)
+        let startX = Math.floor(Math.random() * gridSize)
 
-        if (startX + dx * (word.length - 1) < gridSize &&
-            startY + dy * (word.length - 1) < gridSize){
+        if (startX + dx * (word.length - 1) >= 0 &&
+            startX + dx * (word.length - 1) < gridSize &&
+            startY + dy * (word.length - 1) >= 0 &&
+            startY + dy * (word.length - 1) < gridSize
+        ){
                 let canInsert = true
                 for (let i = 0 ; i < word.length ; i++){
-                    const x = startX + dx * i
                     const y = startY + dy * i
+                    const x = startX + dx * i
                     if (grid[y][x] !== '' && grid[y][x] !== word[i]){
                         canInsert = false
                         break;
@@ -97,13 +100,16 @@ function insertWord(grid,word){
 
                 if (canInsert){
                     for (let i = 0 ; i < word.length; i++){
-                        const x = startX + dx * i
                         const y = startY + dy * i
+                        const x = startX + dx * i
                         grid[y][x] = word[i]
                     }
                     inserted = true
                 }
             }
+        if (!inserted){
+            console.log(`couldnt insert ${word}`)
+        }
     }
 }
 
@@ -217,19 +223,31 @@ function getSelectedCells(start, end){
 
 function checkSelectedWord(){
     const selectedWord = selectedCells.map(cell => cell.textContent).join('')
-    if (chosenNames.includes(selectedWord)){
+    let index = chosenNames.indexOf(selectedWord)
+    // if (index === -1){
+    //     return
+    // }
+    if (!document.getElementById('word-list').childNodes[index].classList.contains('found')){
         markWordAsFound(selectedWord)
     }
 }
 
 function markWordAsFound(word){
-    const index = chosenNames.indexOf(word)
-    if(index > -1){
-        chosenNames[index] = `${word} (found)`
+    const wordListItems = document.querySelectorAll('#word-list li')
+    for (let item of wordListItems){
+        if (item.textContent === word){
+            item.classList.add('found')
+            break;
+        }
     }
-    updateWordListDisplay()
-
     selectedCells.forEach(cell => cell.classList.add('found'))
+    // const index = chosenNames.indexOf('#word-list')
+    // if(index > -1){
+    //     chosenNames[index] = `${word} (found)`
+    // }
+    // updateWordListDisplay()
+
+    // selectedCells.forEach(cell => cell.classList.add('found'))
     
 }
 
