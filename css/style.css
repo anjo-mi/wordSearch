@@ -28,37 +28,57 @@ body{
     text-align: center;
     padding: 2rem 0;
     width: 100%;
-    background-color: rgba(0,0,0,0.4);
+    background-color: rgba(0,0,0,0.5);
 }
 
 h1{
     font-size: 4rem;
     color: #ffe81f;
     -webkit-text-stroke-color: blueviolet;
-    -webkit-text-stroke-width: .2rem;
-    text-shadow: .3rem .3rem black;
+    -webkit-text-stroke-width: .08rem;
     text-shadow: 0 0 10px #ffe81f, 0 0 20px #ffe81f, 0 0 30px #ffe81f;
 }
 
-#game-container{
-    height: auto;
+.main-container{
     width: 90%;
-    margin: 0 auto;
+    max-width: 120rem;
+    margin: 2rem auto;
+    background-color: rgba(0,0,0,0.7);
+    border-radius: 1.5rem;
+    padding: 2rem;
+    box-shadow: 0 0 20px rgba(255, 232, 31, 0.5);
+
+}
+
+#game-container{
+    /* height: auto;
+    width: 90%;
+    margin: 0 auto; */
     display: flex;
     justify-content: space-between;
+    gap: 2rem;
 }
 
 #word-search-grid {
-    width: 60%;
-    border-collapse: collapse;
-    background-color: rgb(245, 245, 8, 0.7);
-    box-shadow: .5rem .5rem 1rem navy;
+    width: 70%;
+    border-collapse: separate;
+    border-spacing: 2px;
+    background-color: rgba(255, 232, 31, 0.2);
+    /* background-color: rgb(245, 245, 8, 0.7); */
+    border-radius: 10px;
+    overflow: hidden;
+    /* box-shadow: .5rem .5rem 1rem navy; */
 }
   
 .grid-cell {
-    width: 30px;
-    height: 30px;
+    width: 32px;
+    height: 32px;
     text-align: center;
+    background-color: rgba(14, 29, 231, 0.5);
+    color: #ccc;
+    font-weight: bold;
+    border-radius: 3px;
+    transition: background-color 0.15s ease;
     border: 1px solid #ccc;
     user-select: none;
 }
