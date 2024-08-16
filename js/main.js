@@ -13,13 +13,24 @@ if (!localStorage.getItem('recordTime')){
     localStorage.setItem('recordTime', 'N/A')
 }
 
+let recordTime = localStorage.getItem('recordTime')
+
 if(Number(localStorage.getItem('recordTime'))){
 
-    let recordTime = Number(localStorage.getItem('recordTime'))
+    recordTime = Number(localStorage.getItem('recordTime'))
 
-    document.querySelector('.best-time').textContent = `Record Time: ${recordTime}`
+    // document.querySelector('.best-time').textContent = `Record Time: ${recordTime}`
 }
 
+
+
+if (!localStorage.getItem('recordDuration')){
+    localStorage.setItem('recordDuration', Infinity)
+}
+
+if(isFinite(+localStorage.getItem('recordDuration'))){
+    document.querySelector('.best-time').textContent = `Record Time: ${recordTime}`
+}
 
 
 
@@ -363,10 +374,18 @@ function setRecordTime(){
     if (!localStorage.getItem('recordTime')){
         localStorage.setItem('recordTime', 'N/A')
     }
-    let recordTime = localStorage.getItem('recordTime')
-    if (+recordTime){
-        if (duration < recordTime){
-            localStorage.setItem('recordTime', duration)
+    if (!localStorage.getItem('recordDuration')){
+        localStorage.setItem('recordDuration', Infinity)
+    }
+    // add local storage for duration
+    // set it equal to Infinity if it doesnt exist
+    // (do same at top of page)
+    // set recordTime = to that value and replace below
+    let recordDuration = localStorage.getItem('recordDuration')
+    if (+recordDuration){
+        if (duration < recordDuration){
+            localStorage.setItem('recordDuration', duration)
+            localStorage.setItem('recordTime', display)
             document.querySelector('.best-time').textContent = `Record Time: ${display}`
         }
     }
@@ -379,8 +398,8 @@ function setRecordTime(){
 
 // let timer,
 //     running,
-//     display,
-//     duration = 0
+//     display, mm : ss . dd
+//     duration = 0 ssssss.dd
 
 //     timer = setInterval(() => {
 //         duration = ((+new Date() - begin) / 1000)
