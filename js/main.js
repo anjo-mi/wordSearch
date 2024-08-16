@@ -1,15 +1,27 @@
 
 
-
+if (!localStorage.getItem('totalWins')){
+    localStorage.setItem('totalWins', 0)
+}
 let totalWins = Number(localStorage.getItem('totalWins'))
-localStorage.setItem('totalWins', 0)
 
 document.querySelector('.total-wins').textContent = `Total Wins: ${totalWins}`
 
-let recordTime = Number(localStorage.getItem('recordTime'))
-localStorage.setItem('recordTime', 'N/A')
 
-document.querySelector('.best-time').textContent = `Record Time: ${recordTime}`
+
+if (!localStorage.getItem('recordTime')){
+    localStorage.setItem('recordTime', 'N/A')
+}
+
+if(Number(localStorage.getItem('recordTime'))){
+
+    let recordTime = Number(localStorage.getItem('recordTime'))
+
+    document.querySelector('.best-time').textContent = `Record Time: ${recordTime}`
+}
+
+
+
 
 
 let url = `https://swapi.dev/api/people/?page=1`
@@ -359,6 +371,38 @@ function setRecordTime(){
         }
     }
 }
+
+// let recordTime = Number(localStorage.getItem('recordTime'))
+// localStorage.setItem('recordTime', 'N/A')
+
+// document.querySelector('.best-time').textContent = `Record Time: ${recordTime}`
+
+// let timer,
+//     running,
+//     display,
+//     duration = 0
+
+//     timer = setInterval(() => {
+//         duration = ((+new Date() - begin) / 1000)
+//         let minutes = Math.floor(duration / 60);
+//         let seconds = Math.floor(duration % 60);
+//         let hundredths = Math.floor((duration % 1) * 100);
+        
+//         // let display;
+//         if (minutes < 1) {
+//             if (seconds < 1) {
+//                 display = `.${hundredths.toString().padStart(2, '0')}`;
+//             } else if (seconds < 10) {
+//                 display = `${seconds}.${hundredths.toString().padStart(2, '0')}`;
+//             } else {
+//                 display = `${seconds.toString().padStart(2, '0')}.${hundredths.toString().padStart(2, '0')}`;
+//             }
+//         } else {
+//             display = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}.${hundredths.toString().padStart(2, '0')}`;
+//         }
+
+//         document.querySelector('.current-time').textContent = display
+//     },10)
 
 
 function handleTouchStart(event){
