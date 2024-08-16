@@ -1,3 +1,9 @@
+let totalWins = Number(localStorage.getItem('totalWins'))
+localStorage.setItem('totalWins', totalWins)
+document.querySelector('.total-wins').textContent = `Total Wins: ${totalWins}`
+
+
+
 let url = `https://swapi.dev/api/people/?page=1`
 
 let arrOfNames = []
@@ -261,8 +267,25 @@ function markWordAsFound(word){
     }
 
     selectedCells.forEach(cell => cell.classList.add('found'))
+    checkWin()
 }
 
+function checkWin(){
+    let totalFoundWords = document.querySelectorAll('#word-list li.found').length
+    if (totalFoundWords >= chosenNames.length){
+        addToTotalWins()
+    }
+}
+
+function addToTotalWins(){
+    if (!localStorage.getItem('totalWins')){
+        localStorage.setItem('totalWins', 0)
+    }
+    let totalWins = Number(localStorage.getItem('totalWins'))
+    totalWins++
+    localStorage.setItem('totalWins', totalWins)
+    document.querySelector('.total-wins').textContent = `Total Wins: ${totalWins}`
+}
 
 
 function handleTouchStart(event){
