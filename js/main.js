@@ -70,6 +70,7 @@ function chosenWords(){
 
 setTimeout(chosenWords, 5000)
 
+
 function createGrid(size){
     return Array(size).fill().map(() => Array(size).fill(''))
 }
@@ -168,6 +169,8 @@ function initializeWordSearch(){
     gridElement.addEventListener('touchstart', handleTouchStart)
     gridElement.addEventListener('touchmove', handleTouchMove)
     gridElement.addEventListener('touchend', handleTouchEnd)
+    
+    startTimer()
 }
 
 function startSelection(event){
@@ -192,6 +195,52 @@ function endSelection(){
         checkSelectedWord()
         clearHighlight()
     }
+}
+
+let timer,
+    running,
+    duration = 0
+
+function startTimer(){
+    if (running === 1){
+        console.log('the timer has already begun')
+        return
+    }
+    let begin = +new Date()
+    timer = setInterval(() => {
+        duration = ((+new Date() - begin) / 1000)
+        let minutes = Math.floor(duration / 60);
+        let seconds = Math.floor(duration % 60);
+        let hundredths = Math.floor((duration % 1) * 100);
+        
+        let display;
+        if (minutes < 1) {
+            if (seconds < 1) {
+                display = `.${hundredths.toString().padStart(2, '0')}`;
+            } else if (seconds < 10) {
+                display = `${seconds}.${hundredths.toString().padStart(2, '0')}`;
+            } else {
+                display = `${seconds.toString().padStart(2, '0')}.${hundredths.toString().padStart(2, '0')}`;
+            }
+        } else {
+            display = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}.${hundredths.toString().padStart(2, '0')}`;
+        }
+
+        document.querySelector('.current-time').textContent = display
+    },10)
+    running = 1
+}
+
+function stopTimer(){
+    if (running === 0){
+        console.log('timers not running')
+        return
+    }
+    clearInterval(timer)
+}
+
+function resetTimer(){
+    duration = 0
 }
 
 function updateHighlight(){
@@ -274,6 +323,7 @@ function checkWin(){
     let totalFoundWords = document.querySelectorAll('#word-list li.found').length
     if (totalFoundWords >= chosenNames.length){
         addToTotalWins()
+        stopTimer()
     }
 }
 
@@ -309,7 +359,7 @@ function handleTouchEnd(){
     endSelection()
 }
 
-initializeWordSearch()
+// initializeWordSearch()
 // one piece fetch call----------------------------------------------
 // let docs = 'https://api-onepiece.com/fr/documentation'
 // let url = 'https://api.api-onepiece.com/v2/characters/fr'
