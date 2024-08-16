@@ -1,7 +1,15 @@
+
+
+
 let totalWins = Number(localStorage.getItem('totalWins'))
-localStorage.setItem('totalWins', totalWins)
+localStorage.setItem('totalWins', 0)
+
 document.querySelector('.total-wins').textContent = `Total Wins: ${totalWins}`
 
+let recordTime = Number(localStorage.getItem('recordTime'))
+localStorage.setItem('recordTime', 'N/A')
+
+document.querySelector('.best-time').textContent = `Record Time: ${recordTime}`
 
 
 let url = `https://swapi.dev/api/people/?page=1`
@@ -199,6 +207,7 @@ function endSelection(){
 
 let timer,
     running,
+    display,
     duration = 0
 
 function startTimer(){
@@ -213,7 +222,7 @@ function startTimer(){
         let seconds = Math.floor(duration % 60);
         let hundredths = Math.floor((duration % 1) * 100);
         
-        let display;
+        // let display;
         if (minutes < 1) {
             if (seconds < 1) {
                 display = `.${hundredths.toString().padStart(2, '0')}`;
@@ -322,8 +331,9 @@ function markWordAsFound(word){
 function checkWin(){
     let totalFoundWords = document.querySelectorAll('#word-list li.found').length
     if (totalFoundWords >= chosenNames.length){
-        addToTotalWins()
         stopTimer()
+        addToTotalWins()
+        setRecordTime()
     }
 }
 
@@ -335,6 +345,19 @@ function addToTotalWins(){
     totalWins++
     localStorage.setItem('totalWins', totalWins)
     document.querySelector('.total-wins').textContent = `Total Wins: ${totalWins}`
+}
+
+function setRecordTime(){
+    if (!localStorage.getItem('recordTime')){
+        localStorage.setItem('recordTime', 'N/A')
+    }
+    let recordTime = localStorage.getItem('recordTime')
+    if (+recordTime){
+        if (duration < recordTime){
+            localStorage.setItem('recordTime', duration)
+            document.querySelector('.best-time').textContent = `Record Time: ${display}`
+        }
+    }
 }
 
 
