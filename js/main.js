@@ -245,17 +245,16 @@ function startTimer(){
         let seconds = Math.floor(duration % 60);
         let hundredths = Math.floor((duration % 1) * 100);
         
-        // let display;
         if (minutes < 1) {
             if (seconds < 1) {
-                display = `.${hundredths.toString().padStart(2, '0')}`;
+                display = `Time: .${hundredths.toString().padStart(2, '0')}`;
             } else if (seconds < 10) {
-                display = `${seconds}.${hundredths.toString().padStart(2, '0')}`;
+                display = `Time: ${seconds}.${hundredths.toString().padStart(2, '0')}`;
             } else {
-                display = `${seconds.toString().padStart(2, '0')}.${hundredths.toString().padStart(2, '0')}`;
+                display = `Time: ${seconds.toString().padStart(2, '0')}.${hundredths.toString().padStart(2, '0')}`;
             }
         } else {
-            display = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}.${hundredths.toString().padStart(2, '0')}`;
+            display = `Time: ${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}.${hundredths.toString().padStart(2, '0')}`;
         }
 
         document.querySelector('.current-time').textContent = display
