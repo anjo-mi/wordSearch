@@ -19,7 +19,7 @@ if(Number(localStorage.getItem('recordTime'))){
 
     recordTime = Number(localStorage.getItem('recordTime'))
 
-    // document.querySelector('.best-time').textContent = `Record Time: ${recordTime}`
+
 }
 
 
@@ -376,10 +376,7 @@ function setRecordTime(){
     if (!localStorage.getItem('recordDuration')){
         localStorage.setItem('recordDuration', Infinity)
     }
-    // add local storage for duration
-    // set it equal to Infinity if it doesnt exist
-    // (do same at top of page)
-    // set recordTime = to that value and replace below
+
     let recordDuration = localStorage.getItem('recordDuration')
     if (+recordDuration){
         if (duration < recordDuration){
@@ -390,37 +387,6 @@ function setRecordTime(){
     }
 }
 
-// let recordTime = Number(localStorage.getItem('recordTime'))
-// localStorage.setItem('recordTime', 'N/A')
-
-// document.querySelector('.best-time').textContent = `Record Time: ${recordTime}`
-
-// let timer,
-//     running,
-//     display, mm : ss . dd
-//     duration = 0 ssssss.dd
-
-//     timer = setInterval(() => {
-//         duration = ((+new Date() - begin) / 1000)
-//         let minutes = Math.floor(duration / 60);
-//         let seconds = Math.floor(duration % 60);
-//         let hundredths = Math.floor((duration % 1) * 100);
-        
-//         // let display;
-//         if (minutes < 1) {
-//             if (seconds < 1) {
-//                 display = `.${hundredths.toString().padStart(2, '0')}`;
-//             } else if (seconds < 10) {
-//                 display = `${seconds}.${hundredths.toString().padStart(2, '0')}`;
-//             } else {
-//                 display = `${seconds.toString().padStart(2, '0')}.${hundredths.toString().padStart(2, '0')}`;
-//             }
-//         } else {
-//             display = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}.${hundredths.toString().padStart(2, '0')}`;
-//         }
-
-//         document.querySelector('.current-time').textContent = display
-//     },10)
 
 
 function handleTouchStart(event){
@@ -444,24 +410,3 @@ function handleTouchEnd(){
     endSelection()
 }
 
-// initializeWordSearch()
-// one piece fetch call----------------------------------------------
-// let docs = 'https://api-onepiece.com/fr/documentation'
-// let url = 'https://api.api-onepiece.com/v2/characters/fr'
-
-// function getChars(url){
-//     fetch(url)
-//         .then(res => res.json())
-//         .then(data => {
-//             console.log(data)
-            // if(data.next !== null){
-            //     getChars(data.next)
-            // }
-
-//         })
-//         .catch(err => {
-//             console.log(` the error: ${err}, occurred`)
-//         })
-// }
-
-// getChars(url)
